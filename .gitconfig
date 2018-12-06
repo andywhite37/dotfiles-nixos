@@ -1,0 +1,92 @@
+[user]
+  name = Andy White
+  email = greatwhitehope@gmail.com
+
+#[core]
+  #excludesfile = /Users/awhite/.gitignore_global
+
+[push]
+  default = simple
+
+[color]
+  ui = true
+
+[alias]
+  # common command shortcuts
+  s           = status
+  a           = add
+  b           = !git --no-pager branch
+  ba          = !git --no-pager branch --all
+  bm          = !git --no-pager branch --merged
+  bam         = !git --no-pager branch --all --merged
+  bnm         = !git --no-pager branch --no-merged
+  bd          = branch -d
+  co          = checkout
+  com         = checkout master
+  ci          = commit
+  d           = diff
+  dt          = difftool
+  dthx        = !git diff --name-only | grep '\\.hx$' | xargs git dt
+  dtnobin     = !git diff --name-only | grep -v '^bin\\/' | xargs git dt
+  dtnowww     = !git diff --name-only | grep -v '^www\\/' | xargs git dt
+  dtnojs      = !git diff --name-only | grep -v '\\.js$' | xargs git dt
+  dtnojscss   = !git diff --name-only | grep -v '\\.js$' | grep -v '\\.css$' | xargs git dt
+  dtjs        = !git diff --name-only | grep '\\.js$' | xargs git dt
+  m           = merge
+  mt          = mergetool
+  sm          = submodule
+  fa          = fetch --prune --all
+  fo          = fetch --prune origin
+  fu          = fetch --prune upstream
+  mom         = merge origin/master
+  mum         = merge upstream/master
+  pushot      = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+  pushut      = !git push -u upstream $(git rev-parse --abbrev-ref HEAD)
+  pusho       = !git push origin
+  pushu       = !git push upstream
+  pushou      = !git push origin && git push upstream
+  pp          = !git pull && git push origin
+  alias       = !git config --list | grep alias | sort | sed 's/^alias\\.//'
+  pr          = !git pushot && hub pull-request
+  sync        = !git pull && git push origin
+
+  # show "current commit" hash
+  cc          = rev-parse HEAD
+  ccs         = rev-parse --short HEAD
+
+  # history - log graphs with color and other decorations
+  #hist        = log --pretty=format:'%H %d | %ad | %an - %s' --graph --date=short
+  #h           = log --pretty=format:'%H %d | %ad | %an - %s' --graph --date=short --all
+  #h           = log --oneline --decorate --graph --all
+  #hb          = log --oneline --decorate --graph
+  h           = log --graph --pretty=format:'%C(auto)%h%d %s %C(bold blue)%an %Cgreen%cr%Creset' --all
+  hb          = log --graph --pretty=format:'%C(auto)%h%d %s %C(bold blue)%an %Cgreen%cr%Creset'
+
+  # diff/list/log files that are different in HEAD compared to master
+  # or files that are different in master compared to HEAD
+  dtom        = diff --name-status master...HEAD
+  dfromm      = diff --name-status HEAD...master
+  dttom       = difftool master...HEAD
+  dtfromm     = difftool HEAD...master
+  ltom        = log --oneline --decorate --graph master..HEAD
+  lfromm      = log --oneline --decorate --graph HEAD..master
+  lm          = log --oneline --decorate --graph --left-right master...HEAD
+
+  # low-level utilities
+  type = cat-file -t
+  dump = cat-file -p
+
+[diff]
+  tool = kdiff3
+  guitool = kdiff3
+[difftool]
+  prompt = false
+[difftool "kdiff3"]
+  trustExitCode = false
+
+[merge]
+  tool = kdiff3
+[mergetool]
+  prompt = false
+[mergetool "kdiff3"]
+  trustExitCode = false
