@@ -23,11 +23,9 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
-    defaultLocale = "en_US.UTF-8";
-  };
+  i18n.consoleFont = "Lat2-Terminus16";
+  i18n.consoleKeyMap = "us";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   # Set your time zone.
   time.timeZone = "America/Denver";
@@ -60,20 +58,18 @@
     wget
     which
     vim
+    vscode
     zsh
   ];
 
-  nixpkgs.config = {
-    allowUnfree = true; # For Google Chrome, etc.
-
-    packageOverrides = pkgs: rec {
-      idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
-        src = pkgs.fetchurl {
-          url = "https://download.jetbrains.com/idea/ideaIU-2018.3.tar.gz";
-          sha256 = "0pdbi6n42raa0pg38i9dsg44rfz4kj4wmzkr5n9xi4civdbqk8xw";
-        };
-      });
-    };
+  nixpkgs.config.allowUnfree = true; # For Google Chrome, etc.
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
+      src = pkgs.fetchurl {
+        url = "https://download.jetbrains.com/idea/ideaIU-2018.3.tar.gz";
+        sha256 = "0pdbi6n42raa0pg38i9dsg44rfz4kj4wmzkr5n9xi4civdbqk8xw";
+      };
+    });
   };
 
   # Some programs need SUID wrappers, can be configured further or are
