@@ -61,6 +61,7 @@
     gcc
     gdb
     git
+    gnome-themes-standard
     unstable.google-chrome
     unstable.idea.idea-ultimate
     jdk
@@ -72,11 +73,13 @@
     openssl
     parted
     patchelf
+    qdirstat
     unstable.rambox
     sbt
     scala
     slack
     sudo
+    terminator
     enlightenment.terminology
     wget
     which
