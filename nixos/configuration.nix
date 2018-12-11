@@ -30,18 +30,39 @@
   # Set your time zone.
   time.timeZone = "America/Denver";
 
+  # For Google Chrome, etc.
+  nixpkgs.config.allowUnfree = true; 
+
+  # Package overrides
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    # Allow installations of packages from the unstable channel
+    # Do this first: sudo nix-channel --add https://nixos.org/channels/nixos-unstable unstable
+    unstable = import <unstable> {
+      # Forward the base config, so we get the allowUnfree, etc. settings.
+      config = config.nixpkgs.config;
+    };
+
+    #idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
+      #src = pkgs.fetchurl {
+        #url = "https://download.jetbrains.com/idea/ideaIU-2018.3.tar.gz";
+        #sha256 = "0pdbi6n42raa0pg38i9dsg44rfz4kj4wmzkr5n9xi4civdbqk8xw";
+      #};
+    #});
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     ack
+    #appimage-run # TODO: might want to remove appimage-run if I'm not using AppImages, it's pretty heavy
     ark
     file
-    firefox
+    unstable.firefox
     gcc
     gdb
     git
-    google-chrome
-    idea.idea-ultimate
+    unstable.google-chrome
+    unstable.idea.idea-ultimate
     jdk
     kdiff3
     neovim
@@ -51,26 +72,26 @@
     openssl
     parted
     patchelf
+    unstable.rambox
     sbt
     scala
     slack
     sudo
+    enlightenment.terminology
     wget
     which
     vim
-    vscode
+    unstable.vscode
+    yakuake
     zsh
   ];
 
-  nixpkgs.config.allowUnfree = true; # For Google Chrome, etc.
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
-      src = pkgs.fetchurl {
-        url = "https://download.jetbrains.com/idea/ideaIU-2018.3.tar.gz";
-        sha256 = "0pdbi6n42raa0pg38i9dsg44rfz4kj4wmzkr5n9xi4civdbqk8xw";
-      };
-    });
-  };
+  # Fonts
+  fonts.fonts = with pkgs; [
+    unstable.fira-code
+    unstable.fira-code-symbols
+    unstable.source-code-pro
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

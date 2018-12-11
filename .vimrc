@@ -7,5 +7,7 @@ Plug 'crusoexia/vim-monokai'
 call plug#end()
 
 " other settings
-colo monokai
+"colo monokai
+colo torte
 
+set guifont=Fira\ Code:h11
