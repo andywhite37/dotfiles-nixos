@@ -6,6 +6,8 @@ Plug 'tpope/vim-sensible'
 Plug 'crusoexia/vim-monokai'
 call plug#end()
 
+noswapfile
+
 " other settings
 "colo monokai
 colo torte

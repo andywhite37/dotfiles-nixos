@@ -5,14 +5,26 @@
 { config, pkgs, ... }:
 
 {
+  #############################################################################
+  # Imports
+  #############################################################################
+ 
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
     ];
+
+  #############################################################################
+  # Boot
+  #############################################################################
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  #############################################################################
+  # Networking
+  #############################################################################
 
   networking.hostName = "mingnix"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -22,6 +34,16 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  #############################################################################
+  # i18n/l12n
+  #############################################################################
+
   # Select internationalisation properties.
   i18n.consoleFont = "Lat2-Terminus16";
   i18n.consoleKeyMap = "us";
@@ -30,10 +52,12 @@
   # Set your time zone.
   time.timeZone = "America/Denver";
 
-  # For Google Chrome, etc.
+  #############################################################################
+  # Nix packages
+  #############################################################################
+
   nixpkgs.config.allowUnfree = true; 
 
-  # Package overrides
   nixpkgs.config.packageOverrides = pkgs: rec {
     # Allow installations of packages from the unstable channel
     # Do this first: sudo nix-channel --add https://nixos.org/channels/nixos-unstable unstable
@@ -52,16 +76,22 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  # or
+  # $ nox wget
   environment.systemPackages = with pkgs; [
     ack
     #appimage-run # TODO: might want to remove appimage-run if I'm not using AppImages, it's pretty heavy
     ark
+    unstable.autorandr
+    binutils
     file
     unstable.firefox
     gcc
     gdb
     git
+    gitAndTools.hub
     gnome-themes-standard
+    gnumake
     unstable.google-chrome
     unstable.idea.idea-ultimate
     jdk
@@ -73,11 +103,14 @@
     openssl
     parted
     patchelf
+    python
+    python3
     qdirstat
     unstable.rambox
     sbt
     scala
     slack
+    unstable.spectacle
     sudo
     terminator
     enlightenment.terminology
@@ -96,28 +129,31 @@
     unstable.source-code-pro
   ];
 
+  ################################################################################
+  # Programs
+  ################################################################################
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
-  # List services that you want to enable:
+  ################################################################################
+  # Audio
+  ################################################################################
+
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
+  ################################################################################
+  # Services
+  ################################################################################
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -131,6 +167,10 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
+  ################################################################################
+  # Users/Groups
+  ################################################################################
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.awhite = {
     isNormalUser = true;
@@ -138,8 +178,12 @@
     home = "/home/awhite";
     createHome = true;
     shell = "/run/current-system/sw/bin/zsh";
-    extraGroups = [ "wheel" ]; # wheel for sudo
+    extraGroups = [ "wheel" "networkmanager" ]; # wheel for sudo
   };
+
+  ################################################################################
+  # NixOS
+  ################################################################################
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
