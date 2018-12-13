@@ -23,6 +23,12 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   #############################################################################
+  # Hardware
+  #############################################################################
+  
+  hardware.enableAllFirmware = true;
+
+  #############################################################################
   # Networking
   #############################################################################
 
@@ -111,6 +117,7 @@
     scala
     slack
     unstable.spectacle
+    unstable.spotify
     sudo
     terminator
     enlightenment.terminology
