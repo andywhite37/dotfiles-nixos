@@ -72,12 +72,12 @@
       config = config.nixpkgs.config;
     };
 
-    #idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
-      #src = pkgs.fetchurl {
-        #url = "https://download.jetbrains.com/idea/ideaIU-2018.3.tar.gz";
-        #sha256 = "0pdbi6n42raa0pg38i9dsg44rfz4kj4wmzkr5n9xi4civdbqk8xw";
-      #};
-    #});
+    idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
+      src = pkgs.fetchurl {
+        url = "https://download.jetbrains.com/idea/ideaIU-2018.3.1-no-jdk.tar.gz";
+        sha256 = "2812f396a096e462a9552f0186a7516ab5d4a3eaa6ebcef36af89db12bbd0d74";
+      };
+    });
   };
 
   # List packages installed in system profile. To search, run:
@@ -99,7 +99,8 @@
     gnome-themes-standard
     gnumake
     unstable.google-chrome
-    unstable.idea.idea-ultimate
+    #unstable.idea.idea-ultimate # crashing on master see nixpkgs issue 52302
+    idea.idea-ultimate
     jdk
     kdiff3
     neovim
@@ -187,6 +188,26 @@
     shell = "/run/current-system/sw/bin/zsh";
     extraGroups = [ "wheel" "networkmanager" ]; # wheel for sudo
   };
+
+  ################################################################################
+  # Security
+  ################################################################################
+
+  # Increase ulimits for Java crap
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "4096";
+    }
+    {
+      domain = "*";
+      type = "hard";
+      item = "nofile";
+      value = "10240";
+    }
+  ];
 
   ################################################################################
   # NixOS
