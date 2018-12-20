@@ -98,7 +98,7 @@
     gitAndTools.hub
     gnome-themes-standard
     gnumake
-    unstable.google-chrome
+    google-chrome
     #unstable.idea.idea-ultimate # crashing on master see nixpkgs issue 52302
     idea.idea-ultimate
     jdk
@@ -117,8 +117,8 @@
     sbt
     scala
     slack
-    unstable.spectacle
-    unstable.spotify
+    spectacle
+    spotify
     sudo
     terminator
     enlightenment.terminology
