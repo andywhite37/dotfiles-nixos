@@ -103,6 +103,7 @@
     idea.idea-ultimate
     jdk
     kdiff3
+    lsof
     neovim
     neovim-qt
     nodejs-8_x
@@ -114,6 +115,7 @@
     python3
     qdirstat
     unstable.rambox
+    remmina
     sbt
     scala
     slack
