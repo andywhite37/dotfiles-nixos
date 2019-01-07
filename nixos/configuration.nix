@@ -89,7 +89,9 @@
     #appimage-run # TODO: might want to remove appimage-run if I'm not using AppImages, it's pretty heavy
     ark
     unstable.autorandr
+    bind # DNS tools
     binutils
+    dnsutils
     file
     unstable.firefox
     gcc
@@ -101,6 +103,7 @@
     google-chrome
     #unstable.idea.idea-ultimate # crashing on master see nixpkgs issue 52302
     idea.idea-ultimate
+    inetutils
     jdk
     kdiff3
     lsof
