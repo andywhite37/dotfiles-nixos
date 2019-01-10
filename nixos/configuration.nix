@@ -100,6 +100,7 @@
     gitAndTools.hub
     gnome-themes-standard
     gnumake
+    gnumeric
     google-chrome
     #unstable.idea.idea-ultimate # crashing on master see nixpkgs issue 52302
     idea.idea-ultimate
@@ -127,10 +128,12 @@
     sudo
     terminator
     enlightenment.terminology
+    unzip
     wget
     which
     vim
     unstable.vscode
+    xsv
     yakuake
     zsh
   ];
