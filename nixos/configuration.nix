@@ -28,6 +28,9 @@
   
   hardware.enableAllFirmware = true;
 
+  # Recommended for steam
+  hardware.opengl.driSupport32Bit = true;
+
   #############################################################################
   # Networking
   #############################################################################
@@ -126,6 +129,7 @@
     slack
     spectacle
     spotify
+    steam
     sudo
     terminator
     enlightenment.terminology
@@ -161,6 +165,7 @@
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
 
   ################################################################################
   # Services
