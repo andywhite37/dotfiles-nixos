@@ -107,6 +107,7 @@
     inetutils
     jdk
     kdiff3
+    leiningen
     lsof
     neovim
     neovim-qt
