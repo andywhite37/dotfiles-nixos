@@ -91,12 +91,12 @@
     ack
     #appimage-run # TODO: might want to remove appimage-run if I'm not using AppImages, it's pretty heavy
     ark
-    unstable.autorandr
+    autorandr
     bind # DNS tools
     binutils
     dnsutils
     file
-    unstable.firefox
+    firefox
     gcc
     gdb
     git
@@ -111,6 +111,7 @@
     jdk
     kdiff3
     leiningen
+    libpng
     lsof
     neovim
     neovim-qt
@@ -119,13 +120,15 @@
     openssl
     parted
     patchelf
+    pngquant
     python
     python3
     qdirstat
-    unstable.rambox
+    rambox
     remmina
     sbt
     scala
+    signal-desktop
     slack
     spectacle
     spotify
@@ -136,6 +139,7 @@
     unzip
     wget
     which
+    wire-desktop
     vim
     unstable.vscode
     xsv
@@ -145,9 +149,11 @@
 
   # Fonts
   fonts.fonts = with pkgs; [
-    unstable.fira-code
-    unstable.fira-code-symbols
-    unstable.source-code-pro
+    fira-code
+    fira-code-symbols
+    noto-fonts
+    noto-fonts-emoji
+    source-code-pro
   ];
 
   ################################################################################

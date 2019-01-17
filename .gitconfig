@@ -90,3 +90,16 @@
   prompt = false
 [mergetool "kdiff3"]
   trustExitCode = false
+
+#[diff]
+#  tool = p4difftool
+#[difftool "p4difftool"]
+#  cmd = p4merge $LOCAL $REMOTE
+#
+#[merge]
+#  tool = p4mergetool
+#[mergetool]
+#  keepBackup = false
+#[mergetool "p4mergetool"]
+#  cmd = p4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
+#  trustExitCode = false
