@@ -110,6 +110,7 @@
     inetutils
     jdk
     kdiff3
+    killall
     leiningen
     libpng
     lsof
