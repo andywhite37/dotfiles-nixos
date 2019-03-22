@@ -8,11 +8,10 @@
   #############################################################################
   # Imports
   #############################################################################
- 
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   #############################################################################
   # Boot
@@ -23,7 +22,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   #############################################################################
-  # Hardware
+  # Hardware/Video/Audio
   #############################################################################
   
   hardware.enableAllFirmware = true;
@@ -31,34 +30,43 @@
   # Recommended for steam
   hardware.opengl.driSupport32Bit = true;
 
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
+
   #############################################################################
   # Networking
   #############################################################################
 
-  networking.hostName = "mingnix"; # Define your hostname.
+  # Define your hostname.
+  networking.hostName = "mingnix"; 
+
   networking.networkmanager.enable = true;
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Enables wireless support via wpa_supplicant (TODO: doesn't seem to be necessary?)
+  #networking.wireless.enable = true;  
 
   # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  #networking.proxy.default = "http://user:password@proxy:port/";
+  #networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  #
+  #networking.firewall.allowedTCPPorts = [ ... ];
+  #networking.firewall.allowedUDPPorts = [ ... ];
+  #
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  #
+  #networking.firewall.enable = false;
 
   #############################################################################
   # i18n/l12n
   #############################################################################
 
-  # Select internationalisation properties.
   i18n.consoleFont = "Lat2-Terminus16";
   i18n.consoleKeyMap = "us";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Set your time zone.
   time.timeZone = "America/Denver";
 
   #############################################################################
@@ -66,7 +74,7 @@
   #############################################################################
 
   nixpkgs.config.allowUnfree = true; 
-
+  
   nixpkgs.config.packageOverrides = pkgs: rec {
     # Allow installations of packages from the unstable channel
     # Do this first: sudo nix-channel --add https://nixos.org/channels/nixos-unstable unstable
@@ -75,24 +83,28 @@
       config = config.nixpkgs.config;
     };
 
+    # Install the latest version of IDEA, but still using the stable channel.
+    # This is done because the stable version tends to lag behind, but the unstable
+    # version tends to have problems.
     idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
       src = pkgs.fetchurl {
-        url = "https://download.jetbrains.com/idea/ideaIU-2018.3.1-no-jdk.tar.gz";
-        sha256 = "2812f396a096e462a9552f0186a7516ab5d4a3eaa6ebcef36af89db12bbd0d74";
+        url = "https://download.jetbrains.com/idea/ideaIU-2018.3.5-no-jdk.tar.gz";
+        sha256 = "08rpnanjff8nj00f4xl4csvn95h0d9a8l6rf15jw2ny87mj04xak";
       };
     });
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  # or
-  # $ nox wget
+  #############################################################################
+  # System-level packages
+  #############################################################################
+
   environment.systemPackages = with pkgs; [
     ack
-    #appimage-run # TODO: might want to remove appimage-run if I'm not using AppImages, it's pretty heavy
+    apacheHttpd
+    appimage-run
     ark
     autorandr
-    bind # DNS tools
+    bind
     binutils
     dnsutils
     file
@@ -105,15 +117,16 @@
     gnumake
     gnumeric
     google-chrome
-    #unstable.idea.idea-ultimate # crashing on master see nixpkgs issue 52302
     idea.idea-ultimate
     inetutils
     jdk
+    jq
     kdiff3
     killall
     leiningen
     libpng
     lsof
+    mariadb
     neovim
     neovim-qt
     nodejs-8_x
@@ -121,6 +134,8 @@
     openssl
     parted
     patchelf
+    php
+    plasma-workspace
     pngquant
     python
     python3
@@ -137,18 +152,24 @@
     sudo
     terminator
     enlightenment.terminology
+    tree
     unzip
     wget
     which
     wire-desktop
     vim
     unstable.vscode
+    xclip
+    xsel
     xsv
     yakuake
     zsh
   ];
 
+  #############################################################################
   # Fonts
+  #############################################################################
+
   fonts.fonts = with pkgs; [
     fira-code
     fira-code-symbols
@@ -167,34 +188,56 @@
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   ################################################################################
-  # Audio
-  ################################################################################
-
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
-
-  ################################################################################
   # Services
   ################################################################################
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  # OpenSSH daemon
+  services.openssh = {
+    enable = true;
+  };
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  # CUPS (printing)
+  # Note: just using Google Cloud Print instead
+  #services.printing = {
+    #enable = true;
+    #drivers = [ pkgs.epson-escpr ];
+  #};
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "eurosign:e";
+  # X11 windowing system
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    xkbOptions = "eurosign:e";
 
-  # Enable touchpad support.
-  services.xserver.libinput.enable = true;
+    # Enable touchpad support.
+    libinput = {
+      enable = true;
+    };
 
-  # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+    # Enable the KDE Desktop Environment.
+    displayManager.sddm.enable = true;
+    desktopManager.plasma5.enable = true;
+  };
+
+  # MariaDB (MySQL)
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+  };
+
+  # Apache web server (httpd)
+  services.httpd = {
+    enable = true;
+    enablePHP = true;
+    enableUserDir = true;
+    adminAddr = "admin@example.org";
+    extraModules = [
+      {
+        name = "php7";
+        path = "${pkgs.php}/modules/libphp7.so";
+      }
+    ];
+  };
 
   ################################################################################
   # Users/Groups
@@ -214,7 +257,7 @@
   # Security
   ################################################################################
 
-  # Increase ulimits for Java crap
+  # Increase ulimits (mainly for JVM stuff)
   security.pam.loginLimits = [
     {
       domain = "*";
