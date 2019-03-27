@@ -106,6 +106,9 @@
     autorandr
     bind
     binutils
+    cabal-install
+    cabal2nix
+    cmake
     dnsutils
     file
     firefox
@@ -123,12 +126,16 @@
     jq
     kdiff3
     killall
+    ksystemlog
     leiningen
     libpng
     lsof
     mariadb
+    ncat
     neovim
     neovim-qt
+    nix-prefetch-git
+    nmap-graphical
     nodejs-8_x
     nox
     openssl
