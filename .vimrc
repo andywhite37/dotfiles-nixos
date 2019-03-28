@@ -6,7 +6,7 @@
 
 call plug#begin()
 Plug 'tpope/vim-sensible'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'crusoexia/vim-monokai'
 call plug#end()
 
@@ -34,8 +34,11 @@ nnoremap <C-l> <C-w>l
 " Color scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-colorscheme monokai
-"colorscheme torte
+if $USER == "awhite"
+  colorscheme monokai
+else
+  colorscheme torte
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Font
@@ -51,4 +54,4 @@ set guifont=Fira\ Code:h11
 let g:NERDTreeShowHidden = 1
 
 " Start with NERDTree open
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
