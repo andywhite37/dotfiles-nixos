@@ -134,6 +134,7 @@
     ncat
     neovim
     neovim-qt
+    ngrok
     nix-prefetch-git
     nmap-graphical
     nodejs-8_x
