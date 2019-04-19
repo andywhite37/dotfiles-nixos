@@ -6,8 +6,10 @@
 
 call plug#begin()
 Plug 'tpope/vim-sensible'
-Plug 'scrooloose/nerdtree' ", { 'on': 'NERDTreeToggle' }
-Plug 'crusoexia/vim-monokai'
+if $USER == "awhite"
+  Plug 'scrooloose/nerdtree'
+  Plug 'crusoexia/vim-monokai'
+endif
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -50,8 +52,19 @@ set guifont=Fira\ Code:h11
 " NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Show hidden files by default
-let g:NERDTreeShowHidden = 1
+if $USER == "awhite"
+  " Show hidden files by default
+  let g:NERDTreeShowHidden = 1
 
-" Start with NERDTree open
-autocmd vimenter * NERDTree
+  " Start NERDTree automatically
+  autocmd VimEnter * NERDTree
+  autocmd BufEnter * NERDTreeMirror
+
+  " Focus the editor buffer automatically (navigate to the right)
+  autocmd VimEnter * wincmd l
+  autocmd BufNew * wincmd l
+
+  " Close vim when NERDTree is the only buffer left
+  " https://github.com/scrooloose/nerdtree/issues/21
+  autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+endif

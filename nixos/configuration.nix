@@ -16,6 +16,9 @@
   #############################################################################
   # Boot
   #############################################################################
+  
+  # Use the latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -88,8 +91,8 @@
     # version tends to have problems.
     idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
       src = pkgs.fetchurl {
-        url = "https://download.jetbrains.com/idea/ideaIU-2018.3.5-no-jdk.tar.gz";
-        sha256 = "08rpnanjff8nj00f4xl4csvn95h0d9a8l6rf15jw2ny87mj04xak";
+        url = "https://download.jetbrains.com/idea/ideaIU-2019.1.1-no-jbr.tar.gz";
+        sha256 = "d1f52f6fcd004d4c6faa0775e74969ca1d881de772397758bd8613b9e8dcf4dd";
       };
     });
   };
@@ -137,14 +140,17 @@
     ngrok
     nix-prefetch-git
     nmap-graphical
+    nodePackages.node2nix
     nodejs-8_x
     nox
+    opam
     openssl
     parted
     patchelf
     php
     plasma-workspace
     pngquant
+    unstable.postman
     python
     python3
     qdirstat
