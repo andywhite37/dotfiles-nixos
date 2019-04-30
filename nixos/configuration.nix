@@ -151,6 +151,9 @@
     plasma-workspace
     pngquant
     unstable.postman
+    psc-package
+    # purescript was broken in 19.03 at this time - remove unstable when possible
+    unstable.purescript
     python
     python3
     qdirstat
@@ -162,6 +165,12 @@
     slack
     spectacle
     spotify
+    # For purescript to compile via stack, I had to add this to ~/.stack/config.yaml
+    #
+    # nix:
+    #   enable: true
+    #   packages: [zlib.dev, zlib.out]
+    stack
     steam
     sudo
     terminator
