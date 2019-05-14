@@ -103,6 +103,7 @@
 
   environment.systemPackages = with pkgs; [
     ack
+    alacritty
     apacheHttpd
     appimage-run
     ark
@@ -124,6 +125,7 @@
     gnumeric
     google-chrome
     idea.idea-ultimate
+    imagemagickBig
     inetutils
     jdk
     jq
@@ -157,7 +159,7 @@
     python
     python3
     qdirstat
-    rambox
+    unstable.rambox
     remmina
     sbt
     scala
@@ -186,6 +188,7 @@
     xsel
     xsv
     yakuake
+    zip
     zsh
   ];
 
