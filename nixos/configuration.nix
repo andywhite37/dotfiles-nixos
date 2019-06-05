@@ -91,8 +91,8 @@
     # version tends to have problems.
     idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
       src = pkgs.fetchurl {
-        url = "https://download.jetbrains.com/idea/ideaIU-2019.1.1-no-jbr.tar.gz";
-        sha256 = "d1f52f6fcd004d4c6faa0775e74969ca1d881de772397758bd8613b9e8dcf4dd";
+        url = "https://download.jetbrains.com/idea/ideaIU-2019.1.3-no-jbr.tar.gz";
+        sha256 = "3af44f942c07b672b1cf465e3497eec060d1773c62b2d6d05b634910151f1262";
       };
     });
   };
@@ -124,6 +124,7 @@
     gnumake
     gnumeric
     google-chrome
+    gwenview
     idea.idea-ultimate
     imagemagickBig
     inetutils
@@ -145,6 +146,7 @@
     nodePackages.node2nix
     nodejs-8_x
     nox
+    okular
     opam
     openssl
     parted
