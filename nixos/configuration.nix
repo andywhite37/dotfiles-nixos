@@ -110,6 +110,7 @@
     autorandr
     bind
     binutils
+    brave
     cabal-install
     cabal2nix
     cmake
