@@ -115,6 +115,7 @@
     cabal2nix
     cmake
     dnsutils
+    dpkg
     file
     firefox
     gcc
