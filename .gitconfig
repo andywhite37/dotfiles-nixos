@@ -45,7 +45,7 @@
   pusho       = !git push origin
   pushu       = !git push upstream
   pushou      = !git push origin && git push upstream
-  pushoutags  = !git push origin && git push origin --tags && git push upstream && git push upstream --tags
+  pushoutags  = !git push origin --follow-tags && git push upstream --follow-tags
   pp          = !git pull && git push origin
   alias       = !git config --list | grep alias | sort | sed 's/^alias\\.//'
   pr          = !git pushot && hub pull-request
