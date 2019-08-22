@@ -91,8 +91,8 @@
     # version tends to have problems.
     idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
       src = pkgs.fetchurl {
-        url = "https://download.jetbrains.com/idea/ideaIU-2019.1.3-no-jbr.tar.gz";
-        sha256 = "3af44f942c07b672b1cf465e3497eec060d1773c62b2d6d05b634910151f1262";
+        url = "https://download.jetbrains.com/idea/ideaIU-2019.2-no-jbr.tar.gz";
+        sha256 = "78588740bbd5c8054316d6b4217ff79a39cbecf3ca762db2b450b4cdbcc39f72";
       };
     });
   };
@@ -138,11 +138,14 @@
     leiningen
     libpng
     lsof
+    lzip
+    unstable.lutris
     mariadb
     ncat
     neovim
     neovim-qt
     ngrok
+    nix-index
     nix-prefetch-git
     nmap-graphical
     nodePackages.node2nix
@@ -178,6 +181,7 @@
     #   packages: [zlib.dev, zlib.out]
     stack
     steam
+    steam-run
     sudo
     terminator
     enlightenment.terminology
