@@ -91,8 +91,8 @@
     # version tends to have problems.
     idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
       src = pkgs.fetchurl {
-        url = "https://download.jetbrains.com/idea/ideaIU-2019.2-no-jbr.tar.gz";
-        sha256 = "78588740bbd5c8054316d6b4217ff79a39cbecf3ca762db2b450b4cdbcc39f72";
+        url = "https://download.jetbrains.com/idea/ideaIU-2019.2.1-no-jbr.tar.gz";
+        sha256 = "25312ef7a1dce376587ccf67e964bedfb0d8226b89bb05cd91fc493915ac5457";
       };
     });
   };
@@ -114,15 +114,18 @@
     cabal-install
     cabal2nix
     cmake
+    dhall
     dnsutils
     dpkg
     file
     firefox
     gcc
     gdb
+    gimp
     git
     gitAndTools.hub
     gnome-themes-standard
+    gnum4
     gnumake
     gnumeric
     google-chrome

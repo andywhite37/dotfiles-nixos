@@ -31,6 +31,7 @@
   dtnowww     = !git diff --name-only | grep -v '^www\\/' | xargs git dt
   dtnojs      = !git diff --name-only | grep -v '\\.js$' | xargs git dt
   dtnojscss   = !git diff --name-only | grep -v '\\.js$' | grep -v '\\.css$' | xargs git dt
+  dtnohtml    = !git diff --name-only | grep -v '\\.html$' | xargs git dt
   dtjs        = !git diff --name-only | grep '\\.js$' | xargs git dt
   m           = merge
   mt          = mergetool
