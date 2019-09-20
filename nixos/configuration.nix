@@ -152,7 +152,7 @@
     nix-prefetch-git
     nmap-graphical
     nodePackages.node2nix
-    nodejs-8_x
+    nodejs-10_x
     nox
     okular
     opam
