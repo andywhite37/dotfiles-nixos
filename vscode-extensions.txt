@@ -1,7 +1,9 @@
 bbenoist.Nix
+bungcip.better-toml
 cssho.vscode-svgviewer
 dbaeumer.vscode-eslint
 eamodio.gitlens
+eg2.vscode-npm-script
 gerane.Theme-Monokai-Midnight
 hoovercj.haskell-linter
 jaredly.reason-vscode
@@ -10,8 +12,10 @@ justusadam.language-haskell
 KnisterPeter.vscode-github
 oderwat.indent-rainbow
 PKief.material-icon-theme
+redhat.vscode-yaml
 scala-lang.scala
 scalameta.metals
+Shan.code-settings-sync
 sldobri.daily
 sysoev.language-stylus
 Vans.haskero
