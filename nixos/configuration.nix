@@ -91,8 +91,8 @@
     # version tends to have problems.
     idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
       src = pkgs.fetchurl {
-        url = "https://download.jetbrains.com/idea/ideaIU-2019.2.1-no-jbr.tar.gz";
-        sha256 = "25312ef7a1dce376587ccf67e964bedfb0d8226b89bb05cd91fc493915ac5457";
+        url = "https://download.jetbrains.com/idea/ideaIU-2019.2.3-no-jbr.tar.gz";
+        sha256 = "a90806a70cbc5925a8584639c7a1e640d3bb987e05f9c2821d566d8457b4942a";
       };
     });
   };
@@ -130,10 +130,12 @@
     gnumeric
     google-chrome
     gwenview
+    unstable.hugo
     idea.idea-ultimate
     imagemagickBig
     inetutils
     jdk
+    jekyll
     jq
     kdiff3
     killall
