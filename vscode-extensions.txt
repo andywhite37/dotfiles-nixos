@@ -17,6 +17,7 @@ scala-lang.scala
 scalameta.metals
 Shan.code-settings-sync
 sldobri.daily
+streetsidesoftware.code-spell-checker
 sysoev.language-stylus
 Vans.haskero
 vscodevim.vim
