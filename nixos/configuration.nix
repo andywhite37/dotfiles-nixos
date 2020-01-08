@@ -28,7 +28,12 @@
   # Hardware/Video/Audio
   #############################################################################
   
+  # TODO: this is broken from some facetime firmware - see https://github.com/NixOS/nixpkgs/issues/71952
+  # Temporary fix is to enableRedistributableFirmware = true
+  # NB: trying all firmware again
   hardware.enableAllFirmware = true;
+  #hardware.enableRedistributableFirmware = true;
+
 
   # Recommended for steam
   hardware.opengl.driSupport32Bit = true;
@@ -57,6 +62,9 @@
   #
   #networking.firewall.allowedTCPPorts = [ ... ];
   #networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPortRanges = [
+    { from = 19000; to = 19999; }
+  ];
   #
   # Or disable the firewall altogether.
   #
@@ -91,8 +99,8 @@
     # version tends to have problems.
     idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
       src = pkgs.fetchurl {
-        url = "https://download.jetbrains.com/idea/ideaIU-2019.2.3-no-jbr.tar.gz";
-        sha256 = "a90806a70cbc5925a8584639c7a1e640d3bb987e05f9c2821d566d8457b4942a";
+        url = "https://download.jetbrains.com/idea/ideaIU-2019.3-no-jbr.tar.gz";
+        sha256 = "c642d8fb8276f3a8c13aa3e52fdf2dfd9ffd242f030c9cb3992545318ee5a793";
       };
     });
   };
@@ -117,6 +125,7 @@
     dhall
     dnsutils
     dpkg
+    dropbox
     file
     firefox
     gcc
@@ -142,6 +151,7 @@
     ksystemlog
     leiningen
     libpng
+    linkchecker
     lsof
     lzip
     unstable.lutris
