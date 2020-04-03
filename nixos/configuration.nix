@@ -99,8 +99,8 @@
     # version tends to have problems.
     idea.idea-ultimate = pkgs.lib.overrideDerivation pkgs.idea.idea-ultimate (attrs: {
       src = pkgs.fetchurl {
-        url = "https://download.jetbrains.com/idea/ideaIU-2019.3-no-jbr.tar.gz";
-        sha256 = "c642d8fb8276f3a8c13aa3e52fdf2dfd9ffd242f030c9cb3992545318ee5a793";
+        url = "https://download.jetbrains.com/idea/ideaIU-2019.3.4-no-jbr.tar.gz";
+        sha256 = "c02e4202e94957e1e659be60ca795f9827b3069486612de8e8bc07291a9b64c4";
       };
     });
   };
@@ -119,6 +119,7 @@
     bind
     binutils
     brave
+    unstable.bs-platform
     cabal-install
     cabal2nix
     cmake
@@ -185,6 +186,7 @@
     remmina
     sbt
     scala
+    signal-cli
     signal-desktop
     slack
     spectacle
